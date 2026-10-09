@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malaria Screener</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="masthead">
+      <p class="eyebrow">Research instrument / image analysis</p>
+      <h1>Malaria<br><em>Screener</em></h1>
+      <p class="intro">Upload a blood-smear image and select the original screening mode.</p>
+    </header>
+
+    <section class="workspace" aria-label="Image analysis">
+      <form id="analysis-form" class="control-panel">
+        <div class="section-label">01 / Sample</div>
+        <label class="dropzone" id="dropzone" for="image-input">
+          <input id="image-input" name="image" type="file" accept="image/*" required>
+          <span class="upload-mark">+</span>
+          <strong id="file-name">Choose smear image</strong>
+          <small>PNG, JPEG, or WebP</small>
+        </label>
+
+        <div class="section-label">02 / Smear type</div>
+        <div class="segmented">
+          <label><input type="radio" name="smear_type" value="thin" checked><span>Thin smear</span></label>
+          <label><input type="radio" name="smear_type" value="thick"><span>Thick smear</span></label>
+        </div>
+
+        <button class="analyze-button" type="submit"><span>Run analysis</span><span aria-hidden="true">↗</span></button>
+        <p class="status" id="status" role="status">Original model pipeline required</p>
+      </form>
+
+      <section class="preview-panel" aria-live="polite">
+        <div class="section-label">03 / Preview</div>
+        <div class="preview-frame" id="preview-frame">
+          <div class="empty-preview"><span>MS</span><p>Your smear image will appear here.</p></div>
+          <img id="preview" alt="Selected smear preview" hidden>
+        </div>
+        <div class="result-strip" id="result-strip">
+          <span>Result</span><strong id="result-value">Waiting for image</strong>
+        </div>
+        <div class="marker-legend" aria-label="Detection marker legend">
+          <div class="legend-item"><span class="marker marker-positive" aria-hidden="true"></span><span><strong>Orange circle</strong> Model flagged this candidate as infected or parasite-positive.</span></div>
+          <div class="legend-item"><span class="marker marker-negative" aria-hidden="true"></span><span><strong>Green circle</strong> Model classified this candidate as not infected or negative.</span></div>
+          <p class="legend-note">Circles mark image regions evaluated by the research model. They are not a clinical diagnosis.</p>
+        </div>
+      </section>
+    </section>
+
+    <footer><span>Malaria Screener</span><span>Models remain upstream-derived</span></footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
