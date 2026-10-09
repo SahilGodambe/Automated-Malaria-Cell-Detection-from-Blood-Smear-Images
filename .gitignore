@@ -3,8 +3,5 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .env
-models/*.pb
-models/*.tflite
-models/*.h5
 uploads/
 results/
